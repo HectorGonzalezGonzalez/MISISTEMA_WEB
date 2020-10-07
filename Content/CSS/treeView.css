@@ -1,0 +1,81 @@
+﻿@keyframes anim {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    1% {
+        display: block;
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+ul, #myUL {
+    list-style-type: none;
+    /*line-height: 25px;*/      
+}
+
+#myUL {
+    margin-left:15px;
+    padding: 0;    
+}
+
+    #myUL li .spanEdit {
+        color: blue;
+        font-size: 12px;        
+        cursor:pointer;
+    }
+
+.caret_h {
+    cursor: pointer;    
+}
+.padre {
+    display: inline-block;
+    width: 90%;
+}
+
+.caret_h::before {
+    content: '';
+    background: url('/Content/img/folderPlus.png');
+    background-size: cover;
+    width: 20px;    
+    height: 15px;    
+    position: absolute;
+    margin-top: 4px;
+    margin-left: -20px;
+}
+
+.caret-down::before {
+    background: url('/Content/img/FolderMin.png');
+    background-size: cover;
+    width: 20px;
+    height: 15px;
+}
+
+.active {
+    /*display: block;*/
+    padding-left: 18px;
+    animation: anim .3s ease-in-out;
+}
+.li_chiaild {
+    list-style-type: square;
+}
+.span_chiaild {
+    color: blue;
+    cursor: pointer;
+}
+
+.newElement {
+    color: orange;
+    cursor: pointer;
+}
+
+
+

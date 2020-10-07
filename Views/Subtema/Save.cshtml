@@ -1,0 +1,50 @@
+﻿@model BUSSINES.Models.ViewModel.SubtemaDViewModel
+
+@{
+    Layout = null;
+}
+
+
+ 
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>Agregar Subtema</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })            
+            <div class="form-group">
+                @Html.LabelFor(model => model.Subtema.Nombre, htmlAttributes: new {@class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Subtema.Nombre, new { htmlAttributes = new { id = "nombreSubtema", @class = "form-control" } })
+                    <span id="nombreSubtema_validate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Es Nodo", new {@class="control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.RadioButtonFor(X => X.Subtema.EsNodo, "1",new {@onclick= "showControlData(1)" })
+                    @Html.Label("SI")
+                    @Html.RadioButtonFor(X => X.Subtema.EsNodo, "0",new {@onclick="showControlData(0)"})
+                    @Html.Label("NO")
+                </div>
+            </div>
+
+            <div id="divControlData" style="display:none;">
+                <div class="form-group">
+                    @Html.Label("Descripcion", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(x=>x.SubtemaDetalle.Descripcion)
+                        <span id="descripcion_validate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-primary" onclick="saveSubtema(@Model.Subtema.Tema_id,@Model.Subtema.Padre_rama,@Model.Subtema.No_rama)"/>
+                </div>
+            </div>
+        </div>    
+
+  
+       

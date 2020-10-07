@@ -1,0 +1,43 @@
+﻿@model BUSSINES.Models.ViewModel.SubtemaDViewModel
+
+@{
+    Layout = null;
+}
+
+        @Html.AntiForgeryToken()
+        
+    <div class="form-horizontal">
+        <h4>Subtema</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Subtema.Id)
+        @*model.Tema_id*@
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subtema.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Subtema.Nombre, new { htmlAttributes = new { id = "nombreSubtema", @class = "form-control" } })
+                <span id="nombreSubtema_validate" class="text-danger"></span>
+            </div>
+        </div>
+        @if (Model.Subtema.EsNodo == 0)
+        {
+            <div class="form-group">
+                @Html.Label("Descripcion", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(x => x.SubtemaDetalle.Descripcion)
+                    <span id="descripcion_validate" class="text-danger"></span>
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Actualizar" onclick="UpdateSubtema(@Model.Subtema.Id,@Model.Subtema.EsNodo,@Model.SubtemaDetalle.Id)" class="btn btn-primary" />
+                <input type="button" value="Eliminar" onclick="DeleteSubtemaNodo(@Model.Subtema.Id)" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+

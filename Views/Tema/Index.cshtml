@@ -1,0 +1,72 @@
+﻿@model IEnumerable<BUSSINES.Models.ViewModel.TemaViewModel>
+
+@{
+    ViewBag.Title = "Lista De Temas";
+}
+
+<link href="~/Content/CSS/treeView.css" rel="stylesheet" />
+<link href="~/Content/CSS/formTemas.css" rel="stylesheet" />
+
+<!--Incio Codemirror Editor para el codigo-->
+<link href="~/Content/Codemirror/codemirror.css" rel="stylesheet" />
+<script src="~/Content/Codemirror/codemirror.js"></script>
+<script src="~/Content/Codemirror/xml.js"></script>
+<script src="~/Content/Codemirror/active-line.js"></script>
+<!--Fin Codemirror Editor para el codigo-->
+<style>
+    .CodeMirror {
+        height: 200px;
+        border: 1px solid #ddd;
+    }
+</style>
+
+
+<div class="container-fluid">
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <div class="ContenedorLeft">
+                @Html.TextBox("txtBuscar", null, new { @class = "form-control", @placeholder = "Buscar tema" })
+                <a href="#" onclick="showFormTema()">Agregar Tema</a>
+
+                <ul id="myUL">
+                    @{
+                        string nameTema = "";
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <li id="li_raizTema_@item.Id">
+                            @if (item.CantidadRel > 0)
+                            {
+                                nameTema = item.Name + "(" + item.CantidadRel + ")";
+                            }
+                            else
+                            {
+                                nameTema = item.Name;
+                            }
+                            <span id="raizTema_@item.Id" class="caret_h padre" onclick="mostrarDatos(@item.Id,this.parentElement,0,@item.Id)">@nameTema</span><span class="spanEdit" onclick="showFormEditTema(@item.Id)"><i class="fas fa-edit"></i></span>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="contenedorRight">
+                <div id="miContenido"></div>
+            </div>
+        </div>
+        <div class="card-footer small text-muted"></div>
+    </div>
+</div>
+
+
+
+
+<script src="~/Content/JS/treeView.js"></script>
+<script src="~/Content/JS/tema_crud.js"></script>
+<script src="~/Content/JS/subtema_crud.js"></script>
+
+
+@*<i class="fas fa-pencil-alt"></i>*@
+

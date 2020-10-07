@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+    //Layout = null;
+}
+
+<h2>Test</h2>
+
+<!--Incio Codemirror Editor para el codigo-->
+<link href="~/Content/Codemirror/codemirror.css" rel="stylesheet" />
+<script src="~/Content/Codemirror/codemirror.js"></script>
+<script src="~/Content/Codemirror/xml.js"></script>
+<script src="~/Content/Codemirror/active-line.js"></script>
+<!--Fin Codemirror Editor para el codigo-->
+
+
+
+<div class="form-group">
+    @Html.Label("Descripcion", new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextArea("SubtemaDetalle.Descripcion")
+        <span id="descripcion_validate" class="text-danger"></span>
+    </div>
+</div>
+
+
+<script>
+    var myTextarea = document.getElementsByName("SubtemaDetalle.Descripcion");
+    alert(myTextarea);
+    console.log($(myTextarea).length);
+    var cm = new Array();
+    for (i = 0; i < myTextarea.length; i++) {
+
+        cm[i] = CodeMirror.fromTextArea($(myTextarea[i])[0], {
+            mode: "text/html",
+            lineNumbers: true,
+            lineWrapping: true,
+            indentUnit: 4,
+            height: 400
+        });
+    };
+</script>
